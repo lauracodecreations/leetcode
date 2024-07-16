@@ -7,22 +7,22 @@ class Solution:
     def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
         dummy = ListNode(0)
         tail = dummy 
-        carry = 0
+        carry_over = 0
 
-        while l1 or l2 or carry:
+        while l1 or l2 or carry_over:
             val1 = l1.val if l1 else 0
             val2 = l2.val if l2 else 0
 
-            total = val1 + val2 + carry
-            digit = total % 10 
-            carry = total // 10
+            total = val1 + val2 + carry_over
+            remainder = total % 10  
+            carry_over = total // 10
 
             if l1:
                 l1 = l1.next
             if l2:
                 l2 = l2.next
             
-            tail.next = ListNode(digit)
+            tail.next = ListNode(remainder)
             tail = tail.next 
 
         return dummy.next
